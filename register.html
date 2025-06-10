@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:site_name" content="中山醫學大學 ee-class">
+    <meta property="og:url" content="https://ee2.csmu.edu.tw/index/login">
+    <meta property="og:title" content="掛號系統 | 中山醫學大學">
+
+    <title>掛號系統登入 | 中山醫學大學</title>
+
+    <link rel="canonical" href="https://ee2.csmu.edu.tw/index/login">
+    <link href="src/style.css" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" href="src/all.min.css">
+</head>
+
+<body data-page-id='index.login' data-page-priv='r'>
+<div id='page-main'>
+    <div class="container">
+        <div class="login-container">
+            <div class="module d-flex">
+                <div class="fs-infobox">
+                    <div class="title">
+                        <span><i class="fa-solid fa-arrows-turn-right"></i>  網路掛號</span>
+                    </div>
+                </div>
+                <div class='fs-infobox'>
+                    <div class='fs-infobox-panel'>
+                        <div class='fs-infobox-header'>
+                            <div class='fs-infobox-logo'><img src='src/f9a4.gif'></div>
+                            <div class='fs-infobox-title'>掛號</div>
+                        </div>
+                        <div class='fs-infobox-body'>
+                            <form id='login_form' action='/index/login' method='post' data-toggle='validator'>
+                                <div class='form-group fs-form-hidden' id='next' data-type='hidden'>
+                                    <div class='fs-form-control'>
+                                        <input type='hidden' name='next' value=''>
+                                    </div>
+                                </div>
+                                <div class='form-group fs-form-hidden' id='act' data-type='hidden'>
+                                    <div class='fs-form-control'>
+                                        <input type='hidden' name='act' value=''>
+                                    </div>
+                                </div>
+                                <div class='form-group' id='account' data-type='text'>
+                                    <div class='fs-form-control'>
+                                        <label class='control-label'></label>
+                                        <div>
+                                            <input type="text" name='account' class='form-control underline' value='' placeholder='請輸入身分證字號'>
+                                        </div>
+                                        <div class='fs-hint'></div>
+                                    </div>
+                                </div>
+                                <div class='form-group' id='password' data-type='password'>
+                                    <div class='fs-form-control'>
+                                        <label class='control-label'></label>
+                                        <div>
+                                            <div style="position: relative; display: inline-block; width: 100%">
+                                                <input type="password" style="width: 100%" name='password' class='form-control underline' value='' placeholder='請輸入密碼，注意:需區分大小寫！' autocomplete="off">
+                                            </div>
+                                        </div>
+                                        <div class='fs-hint'></div>
+                                    </div>
+                                </div>
+                                <div class='form-group' id='rememberMe' data-type='checkbox'>
+                                    <div class='fs-form-control'>
+                                        <label class='control-label'></label>
+                                        <div>
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" data-id="rememberMe_0" value="1"> 保持登入狀態
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class='fs-hint'></div>
+                                    </div>
+                                </div>
+                                <div class='form-group fs-form-hidden' id='anticsrf' data-type='hidden'>
+                                    <div class='fs-form-control'>
+                                        <input type='hidden' name='anticsrf' value='e1b5f4c32a1cb2ad28736916dfd162b5007a422ddb0d7071de6b5707020578ac.7245963'>
+                                    </div>
+                                </div>
+                                <div class='form-group fs-form-buttons'>
+                                    <div class="fs-form-control text-center">
+                                        <button type='submit' class='btn btn-primary btn-lg btn-block' data-role='form-submit' data-waiting=''>
+                                            <span class='btn-text'>登入</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                            <div class='text-center' style='margin-bottom:40px;'><a href='/index/forgotPwd?next='><span class='text '>忘記密碼</span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script nonce="">
+    'use strict';
+
+    var fs = fs || {};
+
+    fs.lang = {
+        "confirm-btn-yes": "\u78ba\u5b9a",
+        "cancel": "\u53d6\u6d88",
+        "app_oriUrl": "app_oriUrl",
+        "reload": "\u91cd\u65b0\u8f09\u5165",
+        "connectionFailAlert": "connectionFailAlert",
+        "save-error": "\u5132\u5b58\u5931\u6557",
+        "network-error": "\u9023\u7dda\u5931\u6557\uff0c\u8acb\u6aa2\u67e5\u662f\u5426\u9023\u4e0a\u7db2\u8def",
+        "server-error": "server-error",
+        "page-not-found": "\u627e\u4e0d\u5230\u6b64\u9801\u9762",
+        "closeMsg": "\u95dc\u9589\u8a0a\u606f",
+        "password-show-hint": "\u6309\u4e00\u4e0b\u986f\u793a\u5bc6\u78bc",
+        "password-hide-hint": "\u6309\u4e00\u4e0b\u96b1\u85cf\u5bc6\u78bc",
+        "mod_fileUpload_leaveCant": "\u8acb\u7b49\u5f85\u6a94\u6848\u4e0a\u50b3\u5b8c\u7562",
+        "errorCount": "\u9805\u932f\u8aa4",
+        "form-uploading": "form-uploading",
+        "ok": "\u78ba\u5b9a",
+        "confirm": "\u78ba\u8a8d",
+        "close": "\u95dc\u9589"
+    };
+
+    function _T(key, replace) {
+        var str = fs.lang[key] || key;
+        return typeof replace === 'object' ? strtr(str, replace) : str;
+
+        function strtr(str, replace) {
+            for (var o in replace) {
+                if (replace.hasOwnProperty(o)) {
+                    while (str.indexOf(o) >= 0) {
+                        str = str.replace(o, replace[o]);
+                    }
+                }
+            }
+            return str;
+        }
+    }
+</script>
+<script nonce="">            (function () {
+    $('body').on('keyup', function (e) {
+        if (e.keyCode == 13) {
+            var login_trigger_lock = false,
+                submitBtn = $("#login_form [data-role='form-submit']");
+
+            login_trigger_lock = submitBtn.prop('disabled');
+            if (login_trigger_lock) {
+                return;
+            }
+            $("#login_form [data-role='form-submit']").trigger('click');
+        }
+    })
+})();
+$('#password_show_hide_icon').on('click', function () {
+    var input = $("#password input");
+    var needShowPassword = (input.attr("type") == "text") ? false : true;
+    var typeValue = (needShowPassword) ? 'text' : 'password';
+    var icon = $(this).find('.font-icon');
+
+    input.attr("type", typeValue);
+
+    if (needShowPassword) {
+        icon.removeClass("far fa-eye").addClass('fas fa-eye-slash');
+        icon.attr("title", _T('password-hide-hint'));
+    } else {
+        icon.removeClass("fas fa-eye-slash").addClass('far fa-eye');
+        icon.attr("title", _T('password-show-hint'));
+    }
+
+});
+$('#login_form [data-toggle="popover"]').popover({container: 'body'});
+var allowFocusType = ["text", "email", "number", "editor", "textarea"];
+var control = $('#login_form').find(".form-group[data-type!='hidden']").first();
+var controlType = control.data('type');
+if ($.inArray(controlType, allowFocusType) !== -1) {
+    if (controlType == 'editor') {
+        CKEDITOR.on('instanceReady', function (e) {
+            var editorId = control.find("textarea[type='editor']").attr('id');
+            var editor = e.editor;
+            if (editor.name == editorId) {
+                editor.focus();
+            }
+        });
+    } else if (controlType == 'textarea') {
+        $("#login_form [data-type='" + controlType + "']:first").find('textarea').focus();
+    } else {
+        $("#login_form [data-type='" + controlType + "']:first").find('input').focus();
+    }
+}
+
+$("#login_form [data-role='form-submit']").click(function (e) {
+    e.preventDefault();
+
+    var formConfig, formId, controlIds, isFileUploading, beforeSubmitAction, beforeSubmitJsDoSubmitType;
+
+    function fsFormSubmit() {
+        var values, data, url, triggerBtn, waitingMsg;
+
+        values = fmc.getValues(formId, controlIds);
+
+        data = {};
+        data["_fmSubmit"] = "yes";
+        data["formVer"] = "3.0";
+        data["formId"] = formId;
+        $.each(values, function (key, obj) {
+            data[key] = obj.value;
+        });
+
+        url = $("#" + formId).attr("action");
+
+        $('body').trigger('form.submit');
+
+        triggerBtn = $("#login_form [data-role='form-submit']");
+
+        waitingMsg = triggerBtn.data('waiting');
+        triggerBtn.prop('disabled', true);
+        fs.post(url, data, function (obj) {
+
+            if (obj.ret.status == 'false') {
+                $('body').trigger('form.validation', obj.ret);
+                triggerBtn.prop('disabled', false);
+                return false;
+            }
+
+            if (formConfig.onSuccess != undefined) {
+                $("#login_form").trigger('form.onSuccess', obj.ret);
+            } else {
+                $('body').trigger('form.completed', obj.ret);
+            }
+        }, 'json', waitingMsg).always(function () {
+            triggerBtn.prop('disabled', false);
+        });
+
+    }
+
+    formConfig = {
+        "type": 0,
+        "id": "login_form",
+        "action": "\/index\/login",
+        "buttons": [{"type": "submit", "class": "btn-primary btn-lg btn-block", "label": "\u767b\u5165"}],
+        "method": "post",
+        "buttons-align-center": true,
+        "locale": "zh-TW"
+    };
+    formId = "login_form";
+    controlIds = [{"id": "next"}, {"id": "act"}, {"id": "account"}, {"id": "password"}, {
+        "id": "rememberMe",
+        "options": [{"id": 0}]
+    }, {"id": "anticsrf"}];
+
+    isFileUploading = fmc.isFileUploading(formId, controlIds);
+    if (isFileUploading) {
+        alert(_T('mod_fileUpload_leaveCant'));
+        return;
+    }
+
+    beforeSubmitJsDoSubmitType = 'retVal';
+    if (beforeSubmitJsDoSubmitType === 'manualCall') {
+        beforeSubmitAction = function () {
+
+        };
+
+        beforeSubmitAction();
+    } else {
+        // use return value
+        beforeSubmitAction = function () {
+            var fsFormSubmit = null;
+
+        };
+
+        var beforeSubmitRet = beforeSubmitAction();
+        if (beforeSubmitRet !== false) {
+            fsFormSubmit();
+        }
+    }
+
+    return;
+});
+
+fmc.bind_checkedCollapse('login_form');
+fmc.bind_checkedEnable('login_form');
+fmc.bind_inputEnable('login_form');
+$("[data-toggle='fsCollapse']").on('click', function (e) {
+    //for both button and
+    var that = $(this),
+        collapseID = that.data('target') || that.attr('href');
+
+    $(collapseID).collapse('toggle');
+    e.preventDefault();
+    e.stopPropagation();
+});
+
+function changeLang(code) {
+    fs.post('/ajax/sys.app.service/changeLocale/?ajaxAuth=6ba72a5926b207df028dcdba44808823', {locale: code}, function (o) {
+        if (o.ret.status == 'false') {
+            alert(o.ret.msg);
+            return;
+        }
+        window.location.reload();
+    });
+}
+
+$("#__button682c01b54853d_1").click(function (event) {
+    event.preventDefault();
+    changeLang('zh-cn');
+});
+$("#__button682c01b54853d_2").click(function (event) {
+    event.preventDefault();
+    changeLang('en-us');
+});
+
+/* close modal when cancel form in the modal */
+$('#privacyModal').on('click', '[data-role="form-cancel"]', function (e) {
+    $('#privacyModal').modal('hide');
+});
+
+fs.modal = (function () {
+    return {
+        set: function (id, data) {
+            var modal = $('#' + id);
+
+            if (typeof data.header !== 'undefined') {
+                if (typeof data.header.title !== 'undefined') {
+                    modal.find('.modal-header .modal-title').html(data.header.title);
+                }
+
+                if (typeof data.header.class !== 'undefined') {
+                    modal.find('.modal-header .modal-title').attr('class', 'modal-title ' + data.header.class);
+                }
+            }
+
+
+            if (typeof data.body !== 'undefined') {
+                modal.find('.modal-body').html(data.body);
+            }
+
+        },
+
+        load: function (id, url, callback, options) {
+
+            var modal = $('#' + id);
+            options = options || {};
+
+            modal.find('.modal-body').html("loading ...");
+
+            /* get modal body html by ajax */
+            fs.post(url, options.urlData, function (json) {
+                if (!json.status) {
+                    alert(json.message);
+                    return;
+                }
+
+
+                /* put html into body */
+                modal.find('.modal-body').html(json.data.html);
+
+                /* dynamically load files */
+                fs.loadCssFiles(json.data.cssFile);
+                fs.loadJsFiles(json.data.jsFile, json.data.jsScript);
+
+                /* close modal when click form cancel */
+                modal.find('[data-role="form-cancel"]').click(
+                    function () {
+                        modal.modal('hide');
+                    }
+                );
+
+                // callback
+
+            });  // end of load()
+        }
+    }
+})();
+
+/* close modal when cancel form in the modal */
+$('#termModal').on('click', '[data-role="form-cancel"]', function (e) {
+    $('#termModal').modal('hide');
+});
+
+
+/* load body html when showing modal */
+$('#checkMultiLogin_modal').on('show.bs.modal', function (event) {
+    var modal = $(this);
+    var button = $(event.relatedTarget);  // a / button that triggered the modal
+    var dataTitle = button.data('modal-title');
+    var dataTitleIsHtml = button.data('title-is-html');
+
+    // 確認 modal 本身是目前事件的目標 (避免因 event bubble up 接到 target 不是自己的事件)
+    if (!$(this).is(event.target)) {
+        return;
+    }
+
+    /* set modal title by button data */
+    if (dataTitle !== undefined) {
+        if (dataTitleIsHtml === undefined) {
+            dataTitleIsHtml = true;
+        }
+
+        if (dataTitleIsHtml === true) {
+            // old code for compatibility: not allow script tag for xss
+            dataTitle = $("<div>" + dataTitle + "</div>");
+            dataTitle.find('script').replaceWith(function () {
+                return fs.escapeHtml($(this).prop("outerHTML"));
+            });
+            dataTitle = dataTitle.html();
+            modal.find('.modal-title').html(dataTitle);
+        } else {
+            modal.find('.modal-title').text(dataTitle);
+        }
+    }
+
+    /* show loading before body is loaded */
+    modal.find('.modal-body').html("loading ...");
+});
+
+$('#checkMultiLogin_modal').on('shown.bs.modal', function (event) {
+    var modal = $(this);
+    var button = $(event.relatedTarget);  // a / button that triggered the modal
+    var dataUrl = button.data('url') || modal.data('url') || "/ajax/sys.pages.index/checkMultiLogin/?next=&_lock=next&ajaxAuth=85ad81130d6ce59977ea205c91084765";
+
+    // 確認 modal 本身是目前事件的目標 (避免因 event bubble up 接到 target 不是自己的事件)
+    if (!$(this).is(event.target)) {
+        return;
+    }
+
+    /* get modal body html by ajax */
+    fs.get(dataUrl, {}, function (json) {
+        if (!json.status) {
+            alert(json.message);
+            modal.modal('hide');
+            return;
+        }
+
+        /* put html into body */
+        modal.find('.modal-body').html(json.data.html);
+
+        /* dynamically load files */
+        fs.loadCssFiles(json.data.cssFile);
+        fs.addLocale(json.data.jsLocale);
+        fs.loadJsFiles(json.data.jsFile, json.data.jsScript);
+
+
+        /* close modal when click form cancel */
+        modal.find('[data-role="form-cancel"]').click(function () {
+            modal.modal('hide');
+        });
+
+    });
+});
+
+
+/* close modal when cancel form in the modal */
+$('#checkMultiLogin_modal').on('click', '[data-role="form-cancel"]', function (e) {
+    $('#checkMultiLogin_modal').modal('hide');
+});
+
+$(document).ready(function () {
+
+    /* dropleft js: 開啟 dropleft 計算所需寬度 */
+    /* (尚未實作 submenu) */
+    $(document).on('shown.bs.dropdown', '.dropleft', function () {
+
+        var totalWidth = 1; // 多 +1 避免小數誤差
+
+        /* calculate total width */
+        $(this).find('> .dropdown-menu > li').each(function (k, v) {
+            totalWidth += $(v).outerWidth(true);
+        });
+
+        /* set totalWidth to dropdown-menu */
+        $(this).children('.dropdown-menu').width(totalWidth);
+    });
+});
+</script>
+<script nonce="">            fs.jsNonce = 'D20A7O';
+$(".fs-disabled").off("click").click(function (event) {
+    if ($(this).hasClass("fs-disabled")) {
+        event.preventDefault();
+    }
+});</script>
+<script nonce="">(function () {
+    var d = new Date();
+    var tzOffset = d.getTimezoneOffset();
+    var tzDistance = Math.abs(tzOffset);
+    var tzOffsetHour = (tzDistance - (tzDistance % 60)) / 60;
+    var tzOffsetMinute = tzDistance % 60;
+    var n = (tzOffset >= 0)
+        ? "-" + fs.util.paddingLeft(tzOffsetHour.toString(), 2, '0') + fs.util.paddingLeft(tzOffsetMinute.toString(), 2, '0')
+        : "+" + fs.util.paddingLeft(tzOffsetHour.toString(), 2, '0') + fs.util.paddingLeft(tzOffsetMinute.toString(), 2, '0');
+
+    $.cookie("timezone", n, {path: '/', expires: 7, domain: '', secure: true});
+})();
+window.App = {};
+window.App.hrefFilterStr = new RegExp('http\:\/\/oauth\.camdemy\.com|http\:\/\/ee2\.csmu\.edu\.tw');
+
+function _login(goNext) {
+    var link = {"url": "\/index\/login?next=%2F", "logined": 0};
+    if (link.logined === 1) {
+        return true;
+    }
+
+    if (typeof goNext == 'undefind' || goNext == true) {
+        window.location.href = '/index/login';
+    } else {
+        window.location.href = link.url;
+    }
+}</script>
+
+</body>
+</html>
