@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-tw">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; application/json;charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta property="og:site_name" content="中山醫學大學 ee-class">
     <meta property="og:url" content="https://ee2.csmu.edu.tw/index/login">
@@ -10,15 +10,15 @@
     <title>掛號系統登入 | 中山醫學大學</title>
 
     <link rel="canonical" href="https://ee2.csmu.edu.tw/index/login">
-    <link href="src/style.css" type="text/css" rel="stylesheet">
-    <link rel="stylesheet" href="src/all.min.css">
+    <link href="style.css" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" href="all.min.css">
 </head>
 
 <body data-page-id='index.login' data-page-priv='r'>
 <div id='page-main'>
     <div class="container">
         <div class="login-container">
-            <div class="module d-flex">
+            <div class="module flex-column">
                 <div class="fs-infobox">
                     <div class="title">
                         <span><i class="fa-solid fa-arrows-turn-right"></i>  網路掛號</span>
@@ -27,7 +27,7 @@
                 <div class='fs-infobox'>
                     <div class='fs-infobox-panel'>
                         <div class='fs-infobox-header'>
-                            <div class='fs-infobox-logo'><img src='src/f9a4.gif'></div>
+                            <div class='fs-infobox-logo'><img src='img/f9a4.gif'></div>
                             <div class='fs-infobox-title'>掛號</div>
                         </div>
                         <div class='fs-infobox-body'>
@@ -90,6 +90,7 @@
                             </form>
                             <div class='text-center' style='margin-bottom:40px;'><a href='/index/forgotPwd?next='><span class='text '>忘記密碼</span></a>
                             </div>
+                            <div id="bulletinContent" class="bulletin-board">載入公告中...</div>
                         </div>
                     </div>
                 </div>
@@ -97,6 +98,57 @@
         </div>
     </div>
 </div>
+
+<!--公告系統-->
+<script>
+    // /server.js
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const bulletinContentDiv = document.getElementById('bulletinContent');
+
+        // 檢查 bulletinContentDiv 是否存在
+        if (!bulletinContentDiv) {
+            console.error("找不到 ID 為 'bulletinContent' 的元素。");
+            return;
+        }
+
+        // 後端 API 的 URL
+        const API_URL = 'http://localhost:5000/api/getBulletin'; // 請確保這個 URL 與您的後端運行位置一致
+
+        // 載入公告的函數
+        async function fetchBulletins() {
+            try {
+                bulletinContentDiv.innerHTML = '載入中...'; // 顯示載入狀態
+
+                const response = await fetch(API_URL);
+
+                if (!response.ok) {
+                    // 如果 HTTP 狀態碼不是 2xx
+                    throw new Error(`HTTP 錯誤！狀態碼：${response.status}`);
+                }
+
+                const data = await response.json(); // 解析 JSON 響應
+
+                if (data.status === 'success' && data.message) { // 檢查狀態和 message 字段是否存在
+                    bulletinContentDiv.innerHTML = data.message;
+                } else {
+                    bulletinContentDiv.innerHTML = '目前沒有公告。';
+                }
+
+            } catch (error) {
+                console.error('獲取公告失敗:', error);
+                bulletinContentDiv.innerHTML = '載入公告失敗，請稍後再試。';
+            }
+        }
+
+        // 頁面載入時立即調用函數來獲取公告
+        fetchBulletins();
+
+        // 如果您需要定時更新公告，可以添加 setInterval
+        // setInterval(fetchBulletins, 60000); // 每 60 秒更新一次
+    });
+</script>
+
 <script nonce="">
     'use strict';
 

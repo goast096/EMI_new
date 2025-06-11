@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="application/json; charset=utf-8">
     <title>中山醫學大學 掛號系統</title>
-    <link rel="stylesheet" type="text/css" href="./src/before_style.css">
+    <link rel="stylesheet" type="text/css" href="/before_style.css">
 </head>
 
 
@@ -13,65 +13,15 @@
     <div class="Main">
         <div class="page-background"></div>
         <div class="welcome-cards">
-            <img src="./img/logo.png" style="scale:80%" alt="中山醫Logo">
+            <img src="img/logo.png" style="scale:80%" alt="中山醫Logo">
             <h2>中山醫學大學掛號系統<br></h2>
             <div class="login-float" onclick="window.location.href='register.html'">
                 <span>>>>點擊登入</span>
             </div>
-            <div id="bulletinContent" class="bulletin-board">載入公告中...</div>
         </div>
     </div>
 
-    <script>
-    // src/js.js
 
-    document.addEventListener('DOMContentLoaded', () => {
-        const bulletinContentDiv = document.getElementById('bulletinContent');
-
-        // 檢查 bulletinContentDiv 是否存在
-        if (!bulletinContentDiv) {
-            console.error("找不到 ID 為 'bulletinContent' 的元素。");
-            return;
-        }
-
-        // 後端 API 的 URL
-        const API_URL = 'http://localhost:5000/api/bulletins'; // 請確保這個 URL 與您的後端運行位置一致
-
-        // 載入公告的函數
-        async function fetchBulletins() {
-            try {
-                bulletinContentDiv.innerHTML = '載入中...'; // 顯示載入狀態
-
-                const response = await fetch(API_URL);
-
-                if (!response.ok) {
-                    // 如果 HTTP 狀態碼不是 2xx
-                    throw new Error(`HTTP 錯誤！狀態碼：${response.status}`);
-                }
-
-                const bulletins = await response.json(); // 解析 JSON 響應
-
-                if (bulletins.length > 0) {
-                    // 通常公告欄只顯示一條主要公告，您可以選擇第一條
-                    // 如果您想顯示多條，需要調整這裡的邏輯
-                    bulletinContentDiv.innerHTML = bulletins[0].content;
-                } else {
-                    bulletinContentDiv.innerHTML = '目前沒有公告。';
-                }
-
-            } catch (error) {
-                console.error('獲取公告失敗:', error);
-                bulletinContentDiv.innerHTML = '載入公告失敗，請稍後再試。';
-            }
-        }
-
-        // 頁面載入時立即調用函數來獲取公告
-        fetchBulletins();
-
-        // 如果您需要定時更新公告，可以添加 setInterval
-        // setInterval(fetchBulletins, 60000); // 每 60 秒更新一次
-    });
-</script>
 </div>
 
 </body>
